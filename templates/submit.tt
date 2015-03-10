@@ -1,0 +1,27 @@
+#!/bin/sh
+
+AWE_SERVER_API=[% awe_host %]:[% awe_api_port %]
+SHOCK_SERVER_API=[% shock_url %]
+
+
+
+if test -z "$1" ; then
+  echo "usage: test.sh <workflow_file> <sequence_file>"
+  exit
+else
+  echo "using workflow file $1."
+fi
+
+if test -z "$2" ; then
+  echo "usage: test.sh <workflow_file> <sequence_file>"
+  exit
+else
+  echo "using workflow file $1"
+  echo "using sequence file $2"
+  echo "using shock server $SHOCK_SERVER_API"
+  echo "using awe server $AWE_SERVER_API"
+fi
+
+echo "running: awe_submit -awe $AWE_SERVER_API -shock $SHOCK_SERVER_API -upload $2 -pipeline $1 -name mgrast_prodtest_1 -project test -totalwork 4"
+
+awe_submit -awe $AWE_SERVER_API -shock $SHOCK_SERVER_API -upload $2 -pipeline $1 -name mgrast_prodtest_1 -project test -totalwork 4

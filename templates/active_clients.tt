@@ -1,0 +1,20 @@
+use JSON;
+use Data::Dumper;
+$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
+
+use Bio::KBase::AuthToken;
+my $tok = Bio::KBase::AuthToken->new();
+my $auth_header;
+$auth_header = "-H 'Authorization: OAuth $tok->{token}'" if $tok->{token};
+
+my $jstring = `curl -s $auth_header $AWE_SERVER_API/clients?query\&Status=active | python -mjson.tool`;
+my $r = decode_json($jstring);
+print "#client_id\thost\tstatus\twork_unit_id\n";
+foreach $data (@{ $r->{data}}) {
+  print $data->{'id'}, "\t";
+  print $data->{'host'}, "\t";
+  print $data->{'Status'}, "\t";
+
+  @work_units = keys ( %{$data->{'current_work'}} );
+  print join(", ", @work_units), "\n";
+}

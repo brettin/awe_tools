@@ -1,0 +1,8 @@
+#!/bin/sh
+
+AWE_SERVER_API=[% awe_host %]:[% awe_api_port %]
+
+echo "using awe server $AWE_SERVER_API"
+
+awe_qstat -awe=$AWE_SERVER_API;
+

@@ -1,0 +1,14 @@
+$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
+$SHOCK_SERVER_API="[% shock_url %]";
+
+use Bio::KBase::AuthToken;
+my $tok = Bio::KBase::AuthToken->new();
+my $auth_header;
+$auth_header = "-H 'Authorization: OAuth $tok->{token}'" if $tok->{token};
+
+my $id = shift;
+$id = $ENV{AWE_JOB} if $ENV{AWE_JOB} && !$id;
+
+my $uri = 'http://' . $AWE_SERVER_API . '/job/' . $id . '?resume';
+
+print `curl $auth_header -X PUT \'$uri\'`;
