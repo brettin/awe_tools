@@ -1,7 +1,7 @@
 $AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
 $SHOCK_SERVER_API="[% shock_url %]";
 
-unless ($ARGV[0] and @ARGV==1) {
+unless ( $ARGV[0] ) {
 	print "\nUsage: delete <job_id>\n\n";
 	exit;
 }
