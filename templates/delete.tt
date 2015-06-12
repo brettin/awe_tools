@@ -28,11 +28,4 @@ $id = $ENV{AWE_JOB} if $ENV{AWE_JOB} && !$id;
 
 $c= "curl $auth_header -X DELETE $AWE_SERVER_API/job/$id";
 system($c);
-
-# $ids = `curl $AWE_SERVER_API/jobs | python -mjson.tool | grep \\"id\\" | cut -f4 -d\\"`;
-
-# foreach my $id (split /\n/, $ids) {
-# 	$c= "curl -X DELETE $AWE_SERVER_API/job/$id";
-# 	system($c);
-# 	print "\n";
-# }
+print "\n";
