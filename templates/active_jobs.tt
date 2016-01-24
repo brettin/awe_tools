@@ -15,5 +15,7 @@ my $r = decode_json($jstring);
 foreach $data (@{ $r->{data}}) {
   print $data->{'id'}, "\t";
   print $data->{'state'}, "\t";
+  print $data->{'info'}->{'name'}, "\t";
+  print $data->{'info'}->{'user'}, "\t";
   print $data->{'notes'}, "\n";
 }
