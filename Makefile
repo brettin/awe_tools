@@ -56,6 +56,7 @@ deploy-utils:
 	$(TPAGE) $(TPAGE_ARGS) templates/clients.tt > scripts/awe-clients.pl
 	$(TPAGE) $(TPAGE_ARGS) templates/jobs.tt > scripts/awe-jobs.pl
 	$(TPAGE) $(TPAGE_ARGS) templates/job.tt > scripts/awe-job.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/data_urls.tt > scripts/awe-data_urls.pl
 	$(TPAGE) $(TPAGE_ARGS) templates/qstat.tt > scripts/awe-qstat.sh
 	#$(TPAGE) $(TPAGE_ARGS) templates/submit.tt > scripts/mg-submit.sh
 	$(TPAGE) $(TPAGE_ARGS) templates/client_delete.tt > scripts/awe-client_delete.pl
