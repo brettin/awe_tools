@@ -1,6 +1,6 @@
 use JSON;
 use Data::Dumper;
-$AWE_SERVER_API=$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
+$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
 
 use Bio::KBase::AuthToken;
 my $tok = Bio::KBase::AuthToken->new();
