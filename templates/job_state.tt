@@ -1,5 +1,6 @@
-$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
-$SHOCK_SERVER_API="[% shock_url %]";
+use strict;
+my $AWE_SERVER_API="[% awe_url %]";
+my $SHOCK_SERVER_API="[% shock_url %]";
 
 use JSON;
 use Bio::KBase::AuthToken;

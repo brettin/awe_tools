@@ -1,3 +1,4 @@
+use strict;
 #!/bin/sh
 
 AWE_SERVER_API=[% awe_host %]:[% awe_api_port %]

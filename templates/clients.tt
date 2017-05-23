@@ -1,4 +1,5 @@
-$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
+use strict;
+my $AWE_SERVER_API="[% awe_url %]";
 
 my $id = shift;
 $id = $ENV{AWE_JOB} if $ENV{AWE_JOB} && !$id;

@@ -5,14 +5,16 @@ TARGET ?= /kb/deployment
 include $(TOP_DIR)/tools/Makefile.common
 
 # These can be defined here and/or in the auto-deploy config file.
-AWE_HOST =
-AWE_API_PORT =
-SHOCK_HOST =
-SHOCK_API_PORT =
+AWE_URL =
+SHOCK_URL =
 
-TPAGE_ARGS = --define kb_top=$(TARGET) --define kb_runtime=$(DEPLOY_RUNTIME) --define awe_host=$(AWE_HOST) --define awe_api_port=$(AWE_API_PORT) --define shock_host=$(SHOCK_HOST) --define shock_api_port=$(SHOCK_API_PORT)
+TPAGE_ARGS = \
+	--define kb_top=$(TARGET) \
+	--define kb_runtime=$(DEPLOY_RUNTIME) \
+	--define awe_url=$(AWE_URL) \
+	--define shock_url=$(SHOCK_URL)
 
-default:
+default: build-utils $(BIN_PERL)  $(BIN_SH)
 
 test:
 	@echo "running client and script tests"
@@ -24,34 +26,10 @@ deploy-client: deploy-scripts
 deploy-service:
 	echo "deploy-service not implemented"
 
-deploy-scripts: deploy-perl-scripts deploy-sh-scripts 
+deploy-scripts: build-utils deploy-perl-scripts deploy-sh-scripts 
 
-deploy-perl-scripts: deploy-utils
-	mkdir -p $(TARGET)/plbin
-	export KB_TOP=$(TARGET); \
-	export KB_RUNTIME=$(DEPLOY_RUNTIME); \
-	export KB_PERL_PATH=$(TARGET)/lib bash ; \
-	for src in $(SRC_PERL) ; do \
-		basefile=`basename $$src`; \
-		base=`basename $$src .pl`; \
-		echo install $$src $$base ; \
-		cp $$src $(TARGET)/plbin ; \
-		$(WRAP_PERL_SCRIPT) "$(TARGET)/plbin/$$basefile" $(TARGET)/bin/$$base ; \
-	done
 
-deploy-sh-scripts: deploy-utils
-	mkdir -p $(TARGET)/shbin
-	export KB_TOP=$(TARGET); \
-	export KB_RUNTIME=$(DEPLOY_RUNTIME); \
-	for src in $(SRC_SH) ; do \
-		basefile=`basename $$src`; \
-		base=`basename $$src .sh`; \
-		echo install $$src $$base ; \
-		cp $$src $(TARGET)/shbin ; \
-		$(WRAP_SH_SCRIPT) "$(TARGET)/shbin/$$basefile" $(TARGET)/bin/$$base ; \
-	done
-
-deploy-utils:
+build-utils:
 	$(TPAGE) $(TPAGE_ARGS) templates/delete.tt > scripts/awe-delete.pl
 	$(TPAGE) $(TPAGE_ARGS) templates/clients.tt > scripts/awe-clients.pl
 	$(TPAGE) $(TPAGE_ARGS) templates/jobs.tt > scripts/awe-jobs.pl
