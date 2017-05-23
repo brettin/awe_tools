@@ -1,15 +1,21 @@
-$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
-$SHOCK_SERVER_API="[% shock_url %]";
+use strict;
+my $AWE_SERVER_API="[% awe_url %]";
 
 use JSON;
 
 my $id = shift;
 $id = $ENV{AWE_JOB} if $ENV{AWE_JOB} && !$id;
 
+if ($id eq '')
+{
+    die "No job ID passed to $0\n";
+}
+
 my $job = `awe-job $id`;
 
 my $r=decode_json($job);
 
+my @outputs;
 foreach my $task (@{ $r->{'data'}->{'tasks'} } ) {
   push @outputs, $task->{outputs};
 }

@@ -1,5 +1,6 @@
-$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
-$SHOCK_SERVER_API="[% shock_url %]";
+use strict;
+my $AWE_SERVER_API="[% awe_url %]";
+my $SHOCK_SERVER_API="[% shock_url %]";
 
 unless ( $ARGV[0] ) {
 	print "\nUsage: delete <job_id>\n\n";
@@ -16,7 +17,7 @@ goto DELETE if ( $ARGV[1] and $ARGV[1] eq '-f' );
 print "\nWARNING! THIS WILL DELETE THE JOB FROM THE AWE SERVER AT $AWE_SERVER_API\n";
 print "\nAre you sure you want to continue (Y/n)?  ";
 
-$answer = <STDIN>;
+my $answer = <STDIN>;
 chomp $answer;
 unless ( $answer eq 'Y' ) {
 	print "\nExiting now, no jobs deleted.\n";
@@ -26,6 +27,8 @@ unless ( $answer eq 'Y' ) {
 DELETE: my $id = shift;
 $id = $ENV{AWE_JOB} if $ENV{AWE_JOB} && !$id;
 
-$c= "curl $auth_header -X DELETE $AWE_SERVER_API/job/$id";
+die "No ID provided to $0\n" if $id eq '';
+
+my $c= "curl $auth_header -X DELETE $AWE_SERVER_API/job/$id";
 system($c);
 print "\n";

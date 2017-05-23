@@ -1,4 +1,5 @@
-$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
+use strict;
+my $AWE_SERVER_API="[% awe_url %]";
 
 use Bio::KBase::AuthToken;
 my $tok = Bio::KBase::AuthToken->new();

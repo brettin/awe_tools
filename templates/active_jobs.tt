@@ -1,6 +1,9 @@
+use strict;
 use JSON;
 use Data::Dumper;
-$AWE_SERVER_API="[% awe_host %]:[% awe_api_port %]";
+
+my $AWE_SERVER_API="[% awe_url %]";
+
 
 use Bio::KBase::AuthToken;
 my $tok = Bio::KBase::AuthToken->new();
@@ -12,7 +15,7 @@ my $uri = $AWE_SERVER_API . '/job?active&limit=2500';
 my $jstring = `curl -s $auth_header \"$uri\" | python -mjson.tool`;
 
 my $r = decode_json($jstring);
-foreach $data (@{ $r->{data}}) {
+foreach my $data (@{ $r->{data}}) {
   print $data->{'id'}, "\t";
   print $data->{'state'}, "\t";
   print $data->{'info'}->{'name'}, "\t";

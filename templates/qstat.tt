@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AWE_SERVER_API=[% awe_host %]:[% awe_api_port %]
+AWE_SERVER_API=[% awe_url %]
 
 echo "using awe server $AWE_SERVER_API"
 

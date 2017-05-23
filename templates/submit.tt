@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AWE_SERVER_API=[% awe_host %]:[% awe_api_port %]
+AWE_SERVER_API=[% awe_url %]
 SHOCK_SERVER_API=[% shock_url %]
 
 
