@@ -28,24 +28,23 @@ deploy-service:
 
 deploy-scripts: build-utils deploy-perl-scripts deploy-sh-scripts 
 
-
 build-utils:
 	$(TPAGE) $(TPAGE_ARGS) templates/delete.tt > scripts/awe-delete.pl
 	$(TPAGE) $(TPAGE_ARGS) templates/clients.tt > scripts/awe-clients.pl
 	$(TPAGE) $(TPAGE_ARGS) templates/jobs.tt > scripts/awe-jobs.pl
 	$(TPAGE) $(TPAGE_ARGS) templates/job.tt > scripts/awe-job.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/data_urls.tt > scripts/awe-data_urls.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/job_state.tt > scripts/awe-job_state.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/qstat.tt > scripts/awe-qstat.sh
+	$(TPAGE) $(TPAGE_ARGS) templates/data_urls.tt > scripts/awe-data-urls.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/job_state.tt > scripts/awe-job-state.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/qstat.tt > scripts/awe-qstat.pl
 	#$(TPAGE) $(TPAGE_ARGS) templates/submit.tt > scripts/mg-submit.sh
-	$(TPAGE) $(TPAGE_ARGS) templates/client_delete.tt > scripts/awe-client_delete.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/suspended_jobs.tt > scripts/awe-suspended_jobs.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/resume_job.tt > scripts/awe-resume_job.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/resume_client.tt > scripts/awe-resume_client.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/active_clients.tt > scripts/awe-active_clients.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/active_jobs.tt > scripts/awe-active_jobs.pl
-	$(TPAGE) $(TPAGE_ARGS) templates/queued_jobs.tt > scripts/awe-queued_jobs.pl
-	chmod a+x scripts/*.sh
+	$(TPAGE) $(TPAGE_ARGS) templates/client_delete.tt > scripts/awe-client-delete.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/suspended_jobs.tt > scripts/awe-suspended-jobs.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/resume_job.tt > scripts/awe-resume-job.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/resume_client.tt > scripts/awe-resume-client.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/active_clients.tt > scripts/awe-active-clients.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/active_jobs.tt > scripts/awe-active-jobs.pl
+	$(TPAGE) $(TPAGE_ARGS) templates/queued_jobs.tt > scripts/awe-queued-jobs.pl
+	-chmod a+x scripts/*.sh
 	chmod a+x scripts/*.pl
 
 # the Makefile.common.rules contains a set of rules that can be used
