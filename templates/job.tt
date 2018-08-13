@@ -2,8 +2,8 @@ use strict;
 my $AWE_SERVER_API="[% awe_url %]";
 my $SHOCK_SERVER_API="[% shock_url %]";
 
-use Bio::KBase::AuthToken;
-my $tok = Bio::KBase::AuthToken->new();
+use P3AuthToken;
+my $tok = P3AuthToken->new();
 my $auth_header;
 $auth_header = "-H 'Datatoken: OAuth $tok->{token}'" if $tok->{token};
 
